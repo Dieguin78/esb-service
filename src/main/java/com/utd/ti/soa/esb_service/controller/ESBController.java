@@ -66,11 +66,11 @@ public class ESBController {
         }
 
         String response = webClient.get()
-            .uri("http://users-production-2a02.up.railway.app/app/users/all")
-            .retrieve()
-            .bodyToMono(String.class)
+            .uri("https://users-production-2a02.up.railway.app/app/users/all") // Usa HTTPS
+            .exchangeToMono(clientResponse -> clientResponse.bodyToMono(String.class)) // Maneja redirección
             .doOnError(error -> System.out.println("Error: " + error.getMessage()))
             .block();
+
         
         return ResponseEntity.ok(response);
     }
