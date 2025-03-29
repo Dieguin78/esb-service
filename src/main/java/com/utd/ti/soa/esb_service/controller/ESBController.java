@@ -18,7 +18,7 @@ public class ESBController {
     private final Auth auth;
 
     public ESBController(WebClient.Builder webClientBuilder) {
-        this.webClient = webClientBuilder.baseUrl("http://users.railway.internal/app").build();
+        this.webClient = webClientBuilder.baseUrl("http://users-production-2a02.up.railway.app/app").build();
         this.auth = new Auth();
     }
 
