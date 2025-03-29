@@ -44,7 +44,7 @@ public class ESBController {
         
         //Enviar petición al servicio de usuarios
         String response = webClient.post()
-            .uri("http://users-production-2a02.up.railway.app/app/users/create")
+            .uri("http://users.railway.internal:5001/app/users/create")
             .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
             .body(BodyInserters.fromValue(user))
             .retrieve()
@@ -66,7 +66,7 @@ public class ESBController {
         }
 
         String response = webClient.get()
-            .uri("http://users-production-2a02.up.railway.app/app/users/all") // Asegúrate de usar HTTP
+            .uri("http://users.railway.internal:5001/app/users/all") // Asegúrate de usar HTTP
             .exchangeToMono(clientResponse -> clientResponse.bodyToMono(String.class)) // Manejo de respuesta
             .doOnError(error -> System.out.println("Error: " + error.getMessage()))
             .block();
@@ -90,7 +90,7 @@ public class ESBController {
         }
 
         String response = webClient.patch() // Usamos PATCH en lugar de POST
-            .uri("http://users-production-2a02.up.railway.app/app/users/update/" + id) // Coincide con la ruta del backend
+            .uri("http://users.railway.internal:5001/app/users/update/" + id) // Coincide con la ruta del backend
             .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
             .body(BodyInserters.fromValue(user))
             .retrieve()
@@ -113,7 +113,7 @@ public class ESBController {
         }
 
         String response = webClient.delete() // Usamos DELETE en lugar de POST
-            .uri("http://users-production-2a02.up.railway.app/app/users/delete/" + id) // Coincide con la ruta del backend
+            .uri("http://users.railway.internal:5001/app/users/delete/" + id) // Coincide con la ruta del backend
             .retrieve()
             .bodyToMono(String.class)
             .doOnError(error -> System.out.println("Error: " + error.getMessage()))
