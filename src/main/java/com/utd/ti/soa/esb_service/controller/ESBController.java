@@ -95,7 +95,7 @@ public class ESBController {
         }
 
         String response = webClient.patch() // Usamos PATCH en lugar de POST
-            .uri("https://users-production-a8f7.up.railway.app/app/users/update/" + id) // Coincide con la ruta del backend
+            .uri("https://users-production-a8f7.up.railway.app/users/update/" + id) // Coincide con la ruta del backend
             .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
             .body(BodyInserters.fromValue(user))
             .retrieve()
@@ -138,7 +138,7 @@ public class ESBController {
         System.out.println("Password: " + password);
     
         String response = webClient.post()
-            .uri("https://users-production-a8f7.up.railway.app/app/users/login")
+            .uri("https://users-production-a8f7.up.railway.app/users/login")
             .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
             .body(BodyInserters.fromValue(credentials))
             .retrieve()
